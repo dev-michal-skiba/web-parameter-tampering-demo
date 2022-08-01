@@ -3,7 +3,5 @@
 .idea/
 # Environments
 venv/
-# DB volume
-data/
 # Cache files
 **/__pycache__/

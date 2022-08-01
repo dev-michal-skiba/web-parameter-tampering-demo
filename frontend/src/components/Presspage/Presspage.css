@@ -1,0 +1,18 @@
+.presspage-container {
+    background-color: #212529;
+    width:fit-content;
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.presspage-header-col {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.presspage-button-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
