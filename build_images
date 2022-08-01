@@ -1,0 +1,2 @@
+docker build ./backend/ --tag wpt_backend
+

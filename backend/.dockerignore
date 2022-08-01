@@ -1,0 +1,9 @@
+# If you are using PyCharm #
+# User-specific stuff
+.idea/
+# Environments
+venv/
+# DB volume
+data/
+# Cache files
+**/__pycache__/
