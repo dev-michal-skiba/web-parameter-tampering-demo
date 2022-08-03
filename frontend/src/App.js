@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Homepage from './components/Homepage/Homepage';
 import PresspagePublic from "./components/Presspage/PresspagePublic";
 import Ticketspage from "./components/Ticketspage/Ticketspage";
 import WptNavbar from './components/Navbar/Navbar';
-
 import './App.css';
 
 function App() {

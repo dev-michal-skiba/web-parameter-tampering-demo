@@ -1,6 +1,6 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { Form } from "react-bootstrap";
-
+import { Col, Container, Row } from "react-bootstrap";
+import LoginForm from "../LoginForm/LoginForm";
+import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import "./Presspage.css"
 
 function PresspagePublic() {
@@ -18,43 +18,14 @@ function PresspagePublic() {
                 <Col className="presspage-form-col" sm={6}>
                     <Row className="justify-content-md-center">
                         <Col sm={8}>
-                            <Form>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="text" placeholder="Username" />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="email" placeholder="Email" />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="text" placeholder="First name" />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="text" placeholder="Last name" />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="password" placeholder="Password" />
-                                </Form.Group>
-                            </Form>
-                            <div className="presspage-button-div">
-                                <Button>Register</Button>
-                            </div>
+                            <RegistrationForm />
                         </Col>
                     </Row>
                 </Col>
                 <Col className="presspage-form-col" sm={6}>
                     <Row className="justify-content-md-center">
                         <Col sm={8}>
-                            <Form>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="text" placeholder="Username" />
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="password" placeholder="Password" />
-                                </Form.Group>
-                            </Form>
-                            <div className="presspage-button-div">
-                                <Button>Login</Button>
-                            </div>
+                            <LoginForm />
                         </Col>
                     </Row>
                 </Col>
@@ -63,5 +34,5 @@ function PresspagePublic() {
     );
 }
   
-  export default PresspagePublic;
+export default PresspagePublic;
   
