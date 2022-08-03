@@ -3,7 +3,7 @@ import LoginForm from "../LoginForm/LoginForm";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import "./Presspage.css"
 
-function PresspagePublic() {
+function PresspagePublic(props) {
     return (
         <Container bg="dark" className="presspage-container">
             <Row className="justify-content-md-center">
@@ -25,7 +25,7 @@ function PresspagePublic() {
                 <Col className="presspage-form-col" sm={6}>
                     <Row className="justify-content-md-center">
                         <Col sm={8}>
-                            <LoginForm />
+                            <LoginForm {...props} />
                         </Col>
                     </Row>
                 </Col>
