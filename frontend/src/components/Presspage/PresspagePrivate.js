@@ -21,6 +21,7 @@ function PresspagePrivate() {
                     setPressApplication({
                         'organization': response.data['organization'],
                         'note': response.data['note'],
+                        'accreditation': response.data['accreditation'],
                         'accepted': response.data['accepted'],
                     });
                 } else {
@@ -45,6 +46,7 @@ function PresspagePrivate() {
                 <PressApp
                     organization={pressApplication['organization']}
                     note={pressApplication['note']}
+                    accreditation={pressApplication['accreditation']}
                     accepted={pressApplication['accepted']}
                 />:
                 <PressAppForm />

@@ -8,7 +8,7 @@ function PressApp(props) {
             <Container bg="dark" className="presspage-container mb-1">
                 <p><b>Organization: </b>{props.organization}</p>
                 <p><b>Note: </b>{props.note}</p>
-                {props.accreditation ? <p>props.accreditation</p>: null}
+                {props.accreditation ? <p><b>Accreditation code: </b>{props.accreditation}</p>: null}
                 {
                     props.accepted ?
                     <p className='accepted'>Accepted</p>:
