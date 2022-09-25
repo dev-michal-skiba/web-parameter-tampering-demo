@@ -5,7 +5,7 @@ import './PressApp.css'
 function PressApp(props) {
     return (
         <>
-            <Container bg="dark" className="presspage-container mb-1">
+            <Container bg="dark" className="form-container mb-1">
                 <p><b>Organization: </b>{props.organization}</p>
                 <p><b>Note: </b>{props.note}</p>
                 {props.accreditation ? <p><b>Accreditation code: </b>{props.accreditation}</p>: null}

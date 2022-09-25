@@ -28,6 +28,7 @@ class LoginView(ObtainAuthToken):
         return Response({
             'token': token.key,
             'user_id': user.pk,
+            'username': user.username,
         })
 
 

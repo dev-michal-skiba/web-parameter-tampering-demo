@@ -31,7 +31,7 @@ function submitForm(usernameInfo, passwordInfo, logIn) {
         response => {
             if (response.status === 200) {
                 isLoginSuccessful = true;
-                logIn(response.data['token'], response.data['user_id']);
+                logIn(response.data['token'], response.data['user_id'], response.data['username']);
             }
         }
     ).catch(
@@ -70,7 +70,7 @@ function LoginForm(props) {
                     <Form.Text className="input-error">{passwordInfo['errorMsg']}</Form.Text>
                 </Form.Group>
             </Form>
-            <div className="presspage-button-div">
+            <div className="form-button-div">
                 <Button
                     onClick={() => submitForm(usernameInfo, passwordInfo, props.logIn)}
                     disabled={!isFormValid(usernameInfo, passwordInfo)}

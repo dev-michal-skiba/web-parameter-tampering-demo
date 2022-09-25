@@ -7,6 +7,15 @@ import Form from 'react-bootstrap/Form';
 import { getIsSafe, setIsSafe } from '../../utils/endpoints';
 import './Navbar.css'
 
+function getUsername() {
+  const username = localStorage.getItem('username');
+  if (username !== null) {
+    return username;
+  }
+
+  return 'Account';
+}
+
 function WptNavbar(props) {
   const [isSafe, setIsSafeState] = useState(getIsSafe());
 
@@ -18,7 +27,13 @@ function WptNavbar(props) {
                 <Nav.Link href="/tickets">Tickets</Nav.Link>
                 <Nav.Link href="/press">Press</Nav.Link>
             </Nav>
-            {props.auth ? <Button variant="dark" onClick={props.logOut} >Log Out</Button> : null }
+            {
+              props.auth ?
+              <>
+                <Button variant="dark" href="/account" >{getUsername()}</Button>
+                <Button variant="dark" onClick={props.logOut} >Log Out</Button>
+              </>:
+              null }
             <Form>
               <Form.Check
                 className='safe-switch'

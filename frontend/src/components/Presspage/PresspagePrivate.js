@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import PressAppForm from "./PressAppForm";
 import PressApp from "./PressApp";
-import { getPressApplicationEndpoint, getPressApplicationConfig } from "../../utils/endpoints";
+import { getPressApplicationEndpoint, getConfig } from "../../utils/endpoints";
 
 
 function PresspagePrivate() {
@@ -10,7 +10,7 @@ function PresspagePrivate() {
 
     useEffect(() => {
         const endpoint = getPressApplicationEndpoint();
-        const config = getPressApplicationConfig();
+        const config = getConfig();
 
         axios.get(endpoint, config).then(
             response => {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Col, Container, Row } from "react-bootstrap";
 import { emptyValidator } from "../../utils/validators";
-import { getPressApplicationEndpoint, getPressApplicationPostData, getPressApplicationConfig } from "../../utils/endpoints";
+import { getPressApplicationEndpoint, getPressApplicationPostData, getConfig } from "../../utils/endpoints";
 import axios from 'axios';
 
 
@@ -24,7 +24,7 @@ function submitForm(organizationInfo, noteInfo) {
     
     const endpoint = getPressApplicationEndpoint();
     const data = getPressApplicationPostData(organizationInfo['value'], noteInfo['value']);
-    const config = getPressApplicationConfig();
+    const config = getConfig();
 
     axios.post(endpoint, data, config).then(
         response => {
@@ -40,9 +40,9 @@ function PressAppForm() {
     const [noteInfo, setNoteInfo] = useState({'value': '', 'isValid': false, 'errorMsg': ''});
 
     return (
-        <Container bg="dark" className="presspage-container mb-1">
+        <Container bg="dark" className="form-container mb-1">
             <Row className="justify-content-md-center">
-                <Col className="presspage-header-col">
+                <Col className="form-header-col">
                     <h3>Apply for press accreditation</h3>
                 </Col>
             </Row>
@@ -57,7 +57,7 @@ function PressAppForm() {
                         <Form.Text className="input-error">{noteInfo['errorMsg']}</Form.Text>
                     </Form.Group>
                 </Form>
-                <div className="presspage-button-div">
+                <div className="form-button-div">
                     <Button
                         onClick={() => submitForm(organizationInfo, noteInfo)}
                         disabled={!isFormValid(organizationInfo, noteInfo)}

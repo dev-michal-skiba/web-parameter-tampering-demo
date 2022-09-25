@@ -1,7 +1,7 @@
 function getIsSafe() {
   const isSafe = localStorage.getItem('isSafe');
   if (isSafe !== null) {
-    return isSafe === 'true'
+    return isSafe === 'true';
   }
 
   setIsSafe(true);
@@ -37,6 +37,27 @@ function getCreateAccountData(username, firstName, lastName, email, password) {
   }
 }
 
+function getAccountEndpoint() {
+  if (getIsSafe()) {
+    return 'http://localhost:8000/account/safe';
+  }
+
+  const user_id = localStorage.getItem('user_id');
+  return 'http://localhost:8000/account/unsafe/' + user_id;
+}
+
+function getAccountData(username, firstName, lastName, email, password) {
+  const data = {};
+
+  if (username.length !== 0) data['username'] = username;
+  if (firstName.length !== 0) data['first_name'] = firstName;
+  if (lastName.length !== 0) data['last_name'] = lastName;
+  if (email.length !== 0) data['email'] = email;
+  if (password.length !== 0) data['password'] = password;
+
+  return data;
+}
+
 function getPressApplicationEndpoint() {
   if (getIsSafe()) {
     return 'http://localhost:8000/press/application/safe';
@@ -53,7 +74,7 @@ function getPressApplicationPostData(organization, note) {
   };
 }
 
-function getPressApplicationConfig() {
+function getConfig() {
   const token = localStorage.getItem('token');
   return {'headers': {'Authorization': 'Token ' + token}};
 }
@@ -65,7 +86,9 @@ export {
   getLoginData,
   getCreateAccountEndpoint,
   getCreateAccountData,
+  getAccountEndpoint,
+  getAccountData,
   getPressApplicationEndpoint,
   getPressApplicationPostData,
-  getPressApplicationConfig,
+  getConfig,
 }

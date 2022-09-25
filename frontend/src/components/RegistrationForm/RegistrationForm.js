@@ -123,7 +123,7 @@ function RegistrationForm() {
                     <Form.Text className="input-error">{passwordInfo['errorMsg']}</Form.Text>
                 </Form.Group>
             </Form>
-            <div className="presspage-button-div">
+            <div className="form-button-div">
                 <Button
                     onClick={() => submitForm(usernameInfo, emailInfo, firstnameInfo, lastnameInfo, passwordInfo)}
                     disabled={!isFormValid(usernameInfo, emailInfo, firstnameInfo, lastnameInfo, passwordInfo)}
