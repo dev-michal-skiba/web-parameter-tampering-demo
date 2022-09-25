@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import { emptyValidator, emailValidator, passwordValidator } from "../../utils/validators";
+import { getCreateAccountEndpoint } from "../../utils/endpoints";
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -43,6 +44,7 @@ function submitForm(usernameInfo, emailInfo, firstnameInfo, lastnameInfo, passwo
     if (!isFormValid(usernameInfo, emailInfo, firstnameInfo, lastnameInfo, passwordInfo))
         return;
 
+    const endpoint = getCreateAccountEndpoint();
     const data = {
         'username': usernameInfo['value'],
         'first_name': firstnameInfo['value'],
@@ -52,7 +54,7 @@ function submitForm(usernameInfo, emailInfo, firstnameInfo, lastnameInfo, passwo
     }
 
     let accountCreated = false;
-    axios.post('http://localhost:8000/account/create', data).then(
+    axios.post(endpoint, data).then(
         response => {
             if (response.status === 201)
                 accountCreated = true;

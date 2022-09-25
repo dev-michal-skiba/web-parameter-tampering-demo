@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import { emptyValidator } from "../../utils/validators";
+import { getLoginEndpoint } from "../../utils/endpoints";
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,9 +27,10 @@ function submitForm(usernameInfo, passwordInfo, logIn) {
         'username': usernameInfo['value'],
         'password': passwordInfo['value'],
     }
-
+    const endpoint = getLoginEndpoint();
     let isLoginSuccessful = false;
-    axios.post('http://localhost:8000/account/login', data).then(
+
+    axios.post(endpoint, data).then(
         response => {
             if (response.status === 200) {
                 isLoginSuccessful = true;

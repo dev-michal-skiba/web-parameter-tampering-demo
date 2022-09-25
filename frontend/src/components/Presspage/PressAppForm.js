@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Col, Container, Row } from "react-bootstrap";
 import { emptyValidator } from "../../utils/validators";
+import { getPressApplicationEndpoint, getPressApplicationPostData, getPressApplicationPostConfig } from "../../utils/endpoints";
 import axios from 'axios';
 
 
@@ -21,18 +22,11 @@ function submitForm(organizationInfo, noteInfo) {
     if (!isFormValid(organizationInfo, noteInfo))
         return;
     
-    const user_id = localStorage.getItem('user_id');
-    const token = localStorage.getItem('token');
-    const data = {
-        'user_id': user_id,
-        'organization': organizationInfo['value'],
-        'note': noteInfo['value'],
-    }
-    const config = {
-        'headers': {'Authorization': 'Token ' + token}
-    }
+    const endpoint = getPressApplicationEndpoint();
+    const data = getPressApplicationPostData(organizationInfo['value'], noteInfo['value']);
+    const config = getPressApplicationPostConfig();
 
-    axios.post('http://localhost:8000/press/application/unsafe', data, config).then(
+    axios.post(endpoint, data, config).then(
         response => {
             if (response.status === 201) {
                 window.location.reload(false);

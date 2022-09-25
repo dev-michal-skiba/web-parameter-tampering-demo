@@ -2,20 +2,17 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import PressAppForm from "./PressAppForm";
 import PressApp from "./PressApp";
+import { getPressApplicationEndpoint, getPressApplicationGetConfig } from "../../utils/endpoints";
 
 
 function PresspagePrivate() {
     const [pressApplication, setPressApplication] = useState();
 
     useEffect(() => {
-        const user_id = localStorage.getItem('user_id');
-        const token = localStorage.getItem('token');
-        const config = {
-            'params': {'pk': user_id},
-            'headers': {'Authorization': 'Token ' + token}
-        }
+        const endpoint = getPressApplicationEndpoint();
+        const config = getPressApplicationGetConfig();
 
-        axios.get('http://localhost:8000/press/application/unsafe', config).then(
+        axios.get(endpoint, config).then(
             response => {
                 if (response.status === 200) {
                     setPressApplication({
