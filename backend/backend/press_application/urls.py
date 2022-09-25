@@ -5,6 +5,6 @@ from press_application.views import (
 
 
 urlpatterns = [
-    path('unsafe', UnsafePressApplicationView.as_view()),
+    path('unsafe/<int:pk>', UnsafePressApplicationView.as_view()),
     path('safe', SafePressApplicationView.as_view()),
 ]

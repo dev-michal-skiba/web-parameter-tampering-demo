@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import { emptyValidator } from "../../utils/validators";
-import { getLoginEndpoint } from "../../utils/endpoints";
+import { getLoginEndpoint, getLoginData } from "../../utils/endpoints";
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,10 +23,7 @@ function submitForm(usernameInfo, passwordInfo, logIn) {
     if (!isFormValid(usernameInfo, passwordInfo))
         return;
 
-    const data = {
-        'username': usernameInfo['value'],
-        'password': passwordInfo['value'],
-    }
+    const data = getLoginData(usernameInfo['value'], passwordInfo['value']);
     const endpoint = getLoginEndpoint();
     let isLoginSuccessful = false;
 

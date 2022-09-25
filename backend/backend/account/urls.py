@@ -1,15 +1,12 @@
 from django.urls import path
 
 from account.views import (
-    CreateUserView, LoginView, SafeDestroyUserView, SafeUpdateUserView,
-    UnsafeDestroyUserView, UnsafeUpdateUserView)
+    CreateUserView, LoginView, SafeUserView, UnsafeUserView)
 
 
 urlpatterns = [
     path('create', CreateUserView.as_view()),
     path('login', LoginView.as_view()),
-    path('unsafe/update/<int:pk>', UnsafeUpdateUserView.as_view()),
-    path('safe/update', SafeUpdateUserView.as_view()),
-    path('unsafe/delete/<int:pk>', UnsafeDestroyUserView.as_view()),
-    path('safe/delete', SafeDestroyUserView.as_view()),
+    path('unsafe/<int:pk>', UnsafeUserView.as_view()),
+    path('safe', SafeUserView.as_view()),
 ]

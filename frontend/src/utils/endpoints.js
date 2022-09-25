@@ -16,8 +16,25 @@ function getLoginEndpoint() {
   return 'http://localhost:8000/account/login';
 }
 
+function getLoginData(username, password) {
+  return {
+    'username': username,
+    'password': password,
+  }
+}
+
 function getCreateAccountEndpoint() {
   return 'http://localhost:8000/account/create';
+}
+
+function getCreateAccountData(username, firstName, lastName, email, password) {
+  return {
+    'username': username,
+    'first_name': firstName,
+    'last_name': lastName,
+    'email': email,
+    'password': password,
+  }
 }
 
 function getPressApplicationEndpoint() {
@@ -25,53 +42,30 @@ function getPressApplicationEndpoint() {
     return 'http://localhost:8000/press/application/safe';
   }
 
-  return 'http://localhost:8000/press/application/unsafe';
+  const user_id = localStorage.getItem('user_id');
+  return 'http://localhost:8000/press/application/unsafe/' + user_id;
 }
 
 function getPressApplicationPostData(organization, note) {
-  if (getIsSafe()) {
-    return {
-      'organization': organization,
-      'note': note,
-    };
-  }
-
-  const user_id = localStorage.getItem('user_id');
   return {
-    'user_id': user_id,
     'organization': organization,
     'note': note,
   };
 }
 
-function getPressApplicationPostConfig() {
+function getPressApplicationConfig() {
   const token = localStorage.getItem('token');
   return {'headers': {'Authorization': 'Token ' + token}};
-}
-
-function getPressApplicationGetConfig() {
-  const token = localStorage.getItem('token');
-
-  if (getIsSafe()) {
-    return {
-      'headers': {'Authorization': 'Token ' + token}
-    };
-  };
-
-  const user_id = localStorage.getItem('user_id');
-  return {
-    'params': {'pk': user_id},
-    'headers': {'Authorization': 'Token ' + token}
-  };
 }
 
 export {
   getIsSafe,
   setIsSafe,
   getLoginEndpoint,
+  getLoginData,
   getCreateAccountEndpoint,
+  getCreateAccountData,
   getPressApplicationEndpoint,
   getPressApplicationPostData,
-  getPressApplicationPostConfig,
-  getPressApplicationGetConfig,
+  getPressApplicationConfig,
 }

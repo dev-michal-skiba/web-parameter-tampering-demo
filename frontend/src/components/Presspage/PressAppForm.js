@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Col, Container, Row } from "react-bootstrap";
 import { emptyValidator } from "../../utils/validators";
-import { getPressApplicationEndpoint, getPressApplicationPostData, getPressApplicationPostConfig } from "../../utils/endpoints";
+import { getPressApplicationEndpoint, getPressApplicationPostData, getPressApplicationConfig } from "../../utils/endpoints";
 import axios from 'axios';
 
 
@@ -24,7 +24,7 @@ function submitForm(organizationInfo, noteInfo) {
     
     const endpoint = getPressApplicationEndpoint();
     const data = getPressApplicationPostData(organizationInfo['value'], noteInfo['value']);
-    const config = getPressApplicationPostConfig();
+    const config = getPressApplicationConfig();
 
     axios.post(endpoint, data, config).then(
         response => {

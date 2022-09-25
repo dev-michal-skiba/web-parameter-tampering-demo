@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import { emptyValidator, emailValidator, passwordValidator } from "../../utils/validators";
-import { getCreateAccountEndpoint } from "../../utils/endpoints";
+import { getCreateAccountEndpoint, getCreateAccountData } from "../../utils/endpoints";
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -45,13 +45,13 @@ function submitForm(usernameInfo, emailInfo, firstnameInfo, lastnameInfo, passwo
         return;
 
     const endpoint = getCreateAccountEndpoint();
-    const data = {
-        'username': usernameInfo['value'],
-        'first_name': firstnameInfo['value'],
-        'last_name': lastnameInfo['value'],
-        'email': emailInfo['value'],
-        'password': passwordInfo['value'],
-    }
+    const data = getCreateAccountData(
+        usernameInfo['value'],
+        firstnameInfo['value'],
+        lastnameInfo['value'],
+        emailInfo['value'],
+        passwordInfo['value']
+    );
 
     let accountCreated = false;
     axios.post(endpoint, data).then(
