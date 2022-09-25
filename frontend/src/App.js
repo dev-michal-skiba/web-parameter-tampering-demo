@@ -37,7 +37,7 @@ function App() {
             <Route path='/' element={<Homepage />}/>
             <Route path='/tickets' element={<Ticketspage />}/>
             <Route path='/press' element={auth ? <PresspagePrivate />: <PresspagePublic logIn={logIn} />}/>
-            <Route path='/account' element={auth ? <Account />: <Navigate to="/" />}/>
+            <Route path='/account' element={auth ? <Account logOut={logOut}/>: <Navigate to="/" />}/>
           </Routes>
         </BrowserRouter>
       </div>

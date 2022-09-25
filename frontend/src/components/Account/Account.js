@@ -1,11 +1,11 @@
 import AccountEditForm from "../AccountEditForm/AccountEditForm";
 import AccountDelete from "../AccountDelete/AccountDelete";
 
-function Account() {
+function Account(props) {
     return (
         <>
             <AccountEditForm />
-            <AccountDelete />
+            <AccountDelete {...props}/>
         </>
     );
 }
