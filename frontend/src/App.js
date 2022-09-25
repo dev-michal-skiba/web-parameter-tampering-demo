@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Presspage from "./components/Presspage/Presspage";
+import PresspagePrivate from "./components/Presspage/PresspagePrivate";
+import PresspagePublic from "./components/Presspage/PresspagePublic";
 import Homepage from './components/Homepage/Homepage';
 import Ticketspage from "./components/Ticketspage/Ticketspage";
 import WptNavbar from './components/Navbar/Navbar';
@@ -35,7 +36,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Homepage />}/>
             <Route path='/tickets' element={<Ticketspage />}/>
-            <Route path='/press' element={<Presspage auth={auth} logIn={logIn} />}/>
+            <Route path='/press' element={auth ? <PresspagePrivate />: <PresspagePublic logIn={logIn} />}/>
             <Route path='/account' element={auth ? <Account />: <Navigate to="/" />}/>
           </Routes>
         </BrowserRouter>
