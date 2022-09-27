@@ -1,0 +1,12 @@
+[
+  {
+      "model": "press_application.pressapplication",
+      "pk": 1,
+      "fields": {
+          "user": 2,
+          "organization": "Radio X",
+          "note": "We are number one radio in whole Europe",
+          "accepted": true
+      }
+  }
+]

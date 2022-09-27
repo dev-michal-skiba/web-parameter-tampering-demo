@@ -1,0 +1,3 @@
+docker exec -it wpt_backend python manage.py loaddata ./account/fixtures/demo.json
+docker exec -it wpt_backend python manage.py loaddata ./press_application/fixtures/demo.json
+

@@ -1,1 +1,0 @@
-docker exec -it wpt_backend python manage.py createsuperuser
