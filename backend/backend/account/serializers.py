@@ -24,7 +24,7 @@ class UserCreateSerializer(ModelSerializer):
         return user
 
 
-class UserUpdateSerializer(ModelSerializer):
+class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password']
@@ -34,5 +34,5 @@ class UserUpdateSerializer(ModelSerializer):
             password = validated_data.pop('password')
             instance.set_password(password)
             instance.save()
-        return super(UserUpdateSerializer, self).update(
+        return super(UserSerializer, self).update(
             instance, validated_data)

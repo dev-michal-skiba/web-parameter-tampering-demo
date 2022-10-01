@@ -6,7 +6,7 @@ from rest_framework.generics import (
     CreateAPIView, DestroyAPIView, UpdateAPIView)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
-from account.serializers import UserCreateSerializer, UserUpdateSerializer
+from account.serializers import UserCreateSerializer, UserSerializer
 
 
 class CreateUserView(CreateAPIView):
@@ -33,7 +33,7 @@ class LoginView(ObtainAuthToken):
 
 
 class UnsafeUserView(DestroyAPIView, UpdateAPIView):
-    serializer_class = UserUpdateSerializer
+    serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
@@ -50,7 +50,7 @@ class UnsafeUserView(DestroyAPIView, UpdateAPIView):
 
 
 class SafeUserView(DestroyAPIView, UpdateAPIView):
-    serializer_class = UserUpdateSerializer
+    serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
