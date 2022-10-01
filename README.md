@@ -97,7 +97,13 @@ accreditation, because API server match press application to user, based on
 auth token which is sent in request header. For the implementation of unsafe
 and safe endpoint take a look at 
 `press_application.views.UnsafePressApplicationView` and
-`press_application.views.SafePressApplicationView`
+`press_application.views.SafePressApplicationView`.
+
+In unsafe version of view, in both methods `get` and `create`, user for which
+action is performed is determined by pk sent in url. In safe version of view
+user is determined by the `request.user`. User on this field is set by
+`AuthenticationMiddleware` which performs authentication of user by token which
+is sent in HTTP header.
 
 <p align="center">
   <img src="images/acc_theft_6.png" alt="Sublime's custom image"/>
@@ -153,6 +159,18 @@ Similarly to previous example, in safe version of application user is
 identified by his auth token, so hacker is not able to change admin's password.
 For the implementation of unsafe and safe endpoint take a look at 
 `account.views.UnsafeUserView` and `account.views.SafeUserView`.
+
+In unsafe version of view, for both methods: `update` from
+`rest_framework.mixins.UpdateModelMixin` and `destroy` from
+`rest_framework.mixins.DestroyModelMixin`, instance for which action is
+performed is determined by `get_object` from
+`rest_framework.generics.GenericAPIView`. This method by default is looking for
+`pk` in url and then gets object by primary key. This is default behaviour of
+django rest framework for ease of developing, but for case of getting user on
+any other vulnerable object, `get_object` should be overridden in a safe way.
+
+That is what is done in safe version of view. `get_object` is overridden and
+user is retrieved by auth token.
 
 <p align="center">
   <img src="images/pass_change_6.png" alt="Sublime's custom image"/>
