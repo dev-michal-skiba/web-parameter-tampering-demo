@@ -31,7 +31,8 @@ services:
     image: wpt_frontend
     container_name: wpt_frontend
     volumes:
-      - ./frontend:/code
+      - ./frontend/public:/code/public
+      - ./frontend/src:/code/src
     ports:
       - '3000:3000'
     command: 'npm start'
