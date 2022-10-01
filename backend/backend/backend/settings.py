@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,11 +19,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cr27u!x9bg*edxin_e0q(l46wru$tbf5$1+k&g_xh3q*r2u3xr'
+# SECURITY WARNING: set secure secret key for production
+SECRET_KEY = os.getenv('WPT_SECRET_KEY', 'insecure-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('WPT_DEBUG', 'true').lower() in ['1', 'true']
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'wpt_db',
-        'PORT': 5432,
+        'NAME': os.getenv('WPT_DB_NAME'),
+        'USER': os.getenv('WPT_DB_USER'),
+        'PASSWORD': os.getenv('WPT_DB_PASSWORD'),
+        'HOST': os.getenv('WPT_DB_HOST'),
+        'PORT': os.getenv('WPT_DB_PORT'),
     }
 }
 

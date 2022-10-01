@@ -7,9 +7,9 @@ services:
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=${WPT_DB_NAME:-postgres}
+      - POSTGRES_USER=${WPT_DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${WPT_DB_PASSWORD:-postgres}
     healthcheck:
         test: ["CMD-SHELL", "pg_isready -U postgres"]
         interval: 1s
@@ -18,6 +18,14 @@ services:
   backend:
     image: wpt_backend
     container_name: wpt_backend
+    environment:
+      - WPT_SECRET_KEY=${WPT_SECRET_KEY:-insecure-secret-key}
+      - WPT_DEBUG=${WPT_DEBUG:-true}
+      - WPT_DB_NAME=${WPT_DB_NAME:-postgres}
+      - WPT_DB_USER=${WPT_DB_USER:-postgres}
+      - WPT_DB_PASSWORD=${WPT_DB_PASSWORD:-postgres}
+      - WPT_DB_HOST=${WPT_DB_HOST:-wpt_db}
+      - WPT_DB_PORT=${WPT_DB_PORT:-5432}
     volumes:
       - ./backend/backend:/code
     ports:
